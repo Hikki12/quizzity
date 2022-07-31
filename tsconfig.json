@@ -6,11 +6,12 @@
     "noEmitOnError": true,
     "lib": ["es2017"],
     "strict": true,
-    "esModuleInterop": false,
+    "esModuleInterop": true,
     "outDir": "dist",
-    "rootDir": "src/"
+    "rootDir": "./"
   },
   "include": [
     "src/**/*"
-  ]
+  ],
+  "exclude": ["node_modules", "lib"]
 }

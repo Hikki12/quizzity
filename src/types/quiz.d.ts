@@ -1,9 +1,15 @@
 interface QuizInterface {
-  removeQuiz(question: Question): void;
-  appendQuiz(question: Question): void;
+  questions: Question[];
+  questionsCopy: Question[];
+  questionIndex: number;
+
+  removeQuestion(question: Question): void;
+  appendQuestion(question: Question): void;
+
+  isCorrect(answer: Answer, replied: Answer): boolean;
   qualify(): number | string;
 
-  setQualifyScale(top: number): void;
+  setMaxScore(top: number): void;
 
   setQuestions(questions: Question[]): void;
   setAnswer(question: Question, answer: Answer): void;
@@ -12,5 +18,11 @@ interface QuizInterface {
   maxTimeReached(callback: Function): void;
   startTimeCount(): void;
 
+  getCurrentQuestion(): Question;
+  nextQuestion(): void;
+  prevQuestion(): void;
+  resetQuestionIndex():void;
+  setQuesitonIndex(index: number): void;
 
+  setCurrentAnswer(answer: Answer): void;
 }

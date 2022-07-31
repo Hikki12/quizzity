@@ -9,6 +9,18 @@ A library to create dynamic quizzes.
 npm i quizzify
 ```
 
+## Question format
+| property | types                                        | Description                             |
+|----------|----------------------------------------------|-----------------------------------------|
+| question | string                                       | A question statement                    |
+| type     | number \| string                             | The answer type                         |
+| input    | "text" \| "number" \| "radio"                | The type of input                       |
+| answer   | number \| string \| numbers[ ] \| string [ ] | The real answer                         |
+| answers  | number \| string \| numbers[ ] \| string [ ] | The possibles answers                   |
+| replied? | number \| string \| numbers[ ] \| string [ ] | Answer replied by the user              |
+| error?   | number                                       | Max error allowed for numerical replies |
+| score?   | number                                       | An score value for the question         |
+
 ## Quiz format
 
 ```js
