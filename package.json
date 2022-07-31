@@ -1,5 +1,9 @@
 {
   "name": "quizzify",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Hikki12/quizzify"
+  },
   "version": "1.0.0",
   "description": "A package to generate dynamic quizzes.",
   "main": "dist/quizzify.min.js",

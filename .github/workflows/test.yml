@@ -9,12 +9,17 @@ jobs:
 
     steps:
 
+    - uses: actions/checkout@v3
+
+    - uses: actions/setup-node@v3
+      with:
+        node-version: 16
+
     - name: Install dependencies
       run: npm install
 
-    - uses: actions/checkout@v1
-    - name: Run Jest
-      uses: stefanoeb/jest-action@1.0.3
+    - name: Run Jest tests
+      uses: npm run test
 
     - name: Upload coverage to Codecov
       uses: codecov/codecov-action@v3
