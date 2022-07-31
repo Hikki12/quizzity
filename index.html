@@ -5,17 +5,32 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quiz Generator</title>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@2.20.0/dist/full.css" rel="stylesheet" type="text/css" />
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body>
-    <main class="w-full h-full py-12">
-        <div class="container border mx-auto max-w-[1200px]">
-            <h3 class="text-center">Quiz</h3>
-            <div class="">p</div>
+    <main class="w-full h-screen py-12 px-4 bg-black/50 text-white">
+        <div class="container mx-auto max-w-[1000px]">
+            <div class="flex justify-between items-center mb-4">
+              <h3 class="text-center font-bold text-2xl">Quizzify</h3>
+              <p class="text-xl font-bold" id="scoreIndicator">1/10</p>
+            </div>
+            <hr class="mt-6 mb-12">
+            <div id="questionContainer" class="grid gap-4 mt-2">
+              <div class="px-4 py-6 h-96 w-[100%]">
+                <p class="mb-3">Hola</p>
+                <input type="text" placeholder="Ingresa tu respuesta..." class="input input-accent text-white w-full" />
+              </div>
+            </div>
+            <div class="flex justify-between">
+              <button class="btn btn-accent" id="prevButton"><< Anterior</button>
+              <button class="btn btn-accent" id="nextButton">Siguiente >></button>
+            </div>
+
         </div>
     </main>
-    <script src="../../dist/quizzity.umd.js" type="module"></script>
+    <script src="../../dist/quizzify.umd.js" type="module" rel="preload"></script>
     <script src="./js/questions.js"></script>
-    <script src="./js/index.js"></script>
+    <script src="./js/index.js" type="module"></script>
 </body>
 </html>
