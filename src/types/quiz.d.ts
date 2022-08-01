@@ -22,7 +22,7 @@ interface QuizInterface {
   nextQuestion(): void;
   prevQuestion(): void;
   resetQuestionIndex():void;
-  setQuesitonIndex(index: number): void;
+  setQuestionIndex(index: number): void;
 
   setCurrentAnswer(answer: Answer): void;
 }

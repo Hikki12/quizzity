@@ -1,8 +1,12 @@
 ## Quizzify
 A library to create dynamic quizzes.
 
-[![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
+<div style="display:flex; gap: 10px;">
 
+[![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=for-the-badge)](https://github.com/prettier/prettier)
+
+[![codecov](https://img.shields.io/codecov/c/gh/Hikki12/quizzify?logo=codecov&style=for-the-badge&token=LCTR6FVZR3)](https://codecov.io/gh/Hikki12/quizzify)
+</div>
 
 ## Install
 ```

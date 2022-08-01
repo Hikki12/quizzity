@@ -8,6 +8,7 @@ export class Quiz implements QuizInterface {
   constructor(questions: Question[] = []) {
     this.questions = questions;
     this.questionsCopy = [...questions];
+    this.questionIndex = 0;
   }
 
   /** Resets the question index. */
@@ -16,11 +17,11 @@ export class Quiz implements QuizInterface {
   }
 
   /** Sets a new question index value */
-  setQuesitonIndex(index: number): void {
-    if (index < 0){
+  setQuestionIndex(index: number): void {
+    if (index <= 0){
       index = 0;
     }
-    if (index >= this.questions.length){
+    if(index >= this.questions.length){
       index = this.questions.length
     }
     this.questionIndex = index;
@@ -107,8 +108,9 @@ export class Quiz implements QuizInterface {
   /** Removes a question from the quiz */
   removeQuestion(question: Question): void {
     const questionIndex = this.findQuestionIndex(question);
-    if(questionIndex)
+    if(typeof questionIndex == "number"){
       this.questions.splice(questionIndex, 1);
+    }
   }
 
   /** Adds a new question to the quiz */
@@ -116,14 +118,24 @@ export class Quiz implements QuizInterface {
     this.questions?.push(question);
   }
 
-  static parseTemplate(template: string, variables: Object): string {
+  static parseTemplate(template: string, variables: Object): string | undefined {
     const names = Object.keys(variables);
     const values = Object.values(variables);
-    return  new Function(...names, "return `"+template+"`;")(...values)
+    try{
+      return  new Function(...names, "return `"+template+"`;")(...values)
+    }catch(err){
+      console.error(err);
+      return undefined;
+    }
   }
 
   /** Returns the number of questions */
   get length(): number {
     return this.questions.length;
   }
+
+  get index(): number {
+    return this.questionIndex;
+  }
+
 }
