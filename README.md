@@ -6,11 +6,17 @@ A library to create dynamic quizzes.
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=for-the-badge)](https://github.com/prettier/prettier)
 
 [![codecov](https://img.shields.io/codecov/c/gh/Hikki12/quizzify?logo=codecov&style=for-the-badge&token=LCTR6FVZR3)](https://codecov.io/gh/Hikki12/quizzify)
+
 </div>
 
 ## Install
 ```
 npm i quizzify
+```
+
+## From CDN
+```html
+<script src="https://cdn.jsdelivr.net/npm/quizzify@1.0.0/dist/quizzify.umd.js" type="module"></script>
 ```
 
 ## Question format
@@ -23,7 +29,7 @@ npm i quizzify
 | answers  | number \| string \| numbers[ ] \| string [ ] | The possibles answers                   |
 | replied? | number \| string \| numbers[ ] \| string [ ] | Answer replied by the user              |
 | error?   | number                                       | Max error allowed for numerical replies |
-| score?   | number                                       | An score value for the question         |
+| score?   | number                                       | A score value for the question         |
 
 ## Quiz format
 
