@@ -18,7 +18,7 @@ jobs:
           npm install -g codecov
           npm ci
       - name: "Run jest"
-        run: npm run jest
+        run: npm run test
       - name: Upload to coverage to codecov
         uses: codecov/codecov-action@v3
         with:
