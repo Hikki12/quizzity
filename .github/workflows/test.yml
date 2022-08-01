@@ -3,23 +3,26 @@ name: Tests
 on: [push]
 
 jobs:
-  build:
+  tests:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 16
+    - uses: actions/checkout@v3
+    - uses: actions/setup-node@v3
+      with:
+        node-version: 16
 
-      - name: Install dependencies
-        run: npm ci
+    - name: Install codecov
+      run: npm install -g codecov
 
-      - name: Run Jest tests
-        uses: npm run test
+    - name: Install dependencies
+      run: npm ci
 
-      - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v3
-        with:
-          token: ${{ secrets.CODECOV_TOKEN }}
-          fail_ci_if_error: true
-          verbose: true
+    - name: Run Jest tests
+      uses: npm run test
+
+    - name: Upload coverage to Codecov
+      uses: codecov/codecov-action@v3
+      with:
+        token: ${{ secrets.CODECOV_TOKEN }}
+        fail_ci_if_error: true
+        verbose: true
