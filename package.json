@@ -14,7 +14,7 @@
     "/dist"
   ],
   "scripts": {
-    "test": "jest --env=node --colors --coverage && codecov",
+    "test": "jest --env=node --colors --coverage",
     "build": "rimraf dist && rollup -c rollup.config.js",
     "dev": "tsc --watch",
     "format": "prettier --write src",
