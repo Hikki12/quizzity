@@ -19,19 +19,30 @@ npm i quizzify
 <script src="https://cdn.jsdelivr.net/npm/quizzify@1.0.0/dist/quizzify.umd.js" type="module"></script>
 ```
 
-## Question format
+## Question Structure
 | property | types                                        | Description                             |
 |----------|----------------------------------------------|-----------------------------------------|
 | question | string                                       | A question statement                    |
 | type     | number \| string                             | The answer type                         |
 | input    | "text" \| "number" \| "radio"                | The type of input                       |
-| answer   | number \| string \| numbers[ ] \| string [ ] | The real answer                         |
-| answers  | number \| string \| numbers[ ] \| string [ ] | The possibles answers                   |
-| replied? | number \| string \| numbers[ ] \| string [ ] | Answer replied by the user              |
+| answer?   | number \| string \| number [ ] \| string [ ] | The real answer                         |
+| answers  | number \| string \| number [ ] \| string [ ] | The possibles answers                   |
+| reply? | number \| string \| number [ ] \| string [ ] | Answer replied by the user              |
 | error?   | number                                       | Max error allowed for numerical replies |
 | score?   | number                                       | A score value for the question         |
 
-## Quiz format
+## Question example
+
+```js
+const question = {
+  question: 'some question statement',
+  type: "number", // type of question
+  input: "text", // type of answer input
+  answer: 2.20, // (optional) real answer
+  answers: [-2.20, 2.20, 1.10, -1.10] // possible answers
+}
+```
+
 
 ```js
 // server.js

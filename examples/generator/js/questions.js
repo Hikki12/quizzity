@@ -1,7 +1,7 @@
 const question1 = {
   question: "How much is 2 + 2.5?",
   type: "number",
-  entry: "input",
+  input: "input",
   value: 4.5,
   error: 10 // - + error percentage allowed
 }
@@ -19,3 +19,6 @@ const question2 = {
 
 
 const questions = [question1, question2]
+
+const quiz = new quizzify.Quiz(questions);
+window.quiz = quiz;

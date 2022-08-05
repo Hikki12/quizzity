@@ -9,7 +9,7 @@ const baseConfig = createBasicConfig();
 
 
 export default {
-  input: './src/quizzify.ts',
+  input: './src/quiz.ts',
   output: [
     {
         file: main,

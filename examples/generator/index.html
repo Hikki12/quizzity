@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="emerald">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,7 +9,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body>
-    <main class="w-full h-screen py-12 px-4 bg-black/50 text-white">
+    <main class="w-full h-screen py-12 px-4">
         <div class="container mx-auto max-w-[1000px]">
             <div class="flex justify-between items-center mb-4">
               <h3 class="text-center font-bold text-2xl">Quizzify</h3>
@@ -18,19 +18,18 @@
             <hr class="mt-6 mb-12">
             <div id="questionContainer" class="grid gap-4 mt-2">
               <div class="px-4 py-6 h-96 w-[100%]">
-                <p class="mb-3">Hola</p>
-                <input type="text" placeholder="Ingresa tu respuesta..." class="input input-accent text-white w-full" />
+                <p class="mb-3">...</p>
+                <input type="text" placeholder="Ingresa tu respuesta..." class="input input-accent w-full" />
               </div>
             </div>
             <div class="flex justify-between">
               <button class="btn btn-accent" id="prevButton"><< Anterior</button>
               <button class="btn btn-accent" id="nextButton">Siguiente >></button>
             </div>
-
         </div>
     </main>
-    <script src="../../dist/quizzify.umd.js" type="module" rel="preload"></script>
-    <script src="./js/questions.js"></script>
-    <script src="./js/index.js" type="module"></script>
+    <script src="../../dist/quizzify.umd.js" type="module"></script>
+    <script src="./js/questions.js" type="module"></script>
+    <script src="./js/index.js"></script>
 </body>
 </html>

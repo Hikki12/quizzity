@@ -81,6 +81,72 @@ describe("Testing quiz methods", () => {
     quiz.removeQuestion(currentQuestion);
     expect(quiz.length).toBe(0);
   });
+});
 
+describe("Tests for set a single reply", () => {
+  const quiz = new Quiz();
+  const question = {
+    question: "This is a test question",
+    type: "number",
+    answer: 1,
+    answers: [1, 2, 3, 4]
+  }
+
+  const questionString = {
+    question: "This is a string test question",
+    type: "string",
+    answer: "a",
+    answers: ["w", "x", "c", "a"]
+  }
+
+  test("Single numeric reply should be correct", () => {
+    let reply = 1;
+    quiz.appendQuestion(question);
+    quiz.setCurrentReply(reply);
+    const questionShadow = quiz.getCurrentQuestionShadow();
+    expect(quiz.isCorrect(question, questionShadow)).toBeTruthy();
+  });
+
+  test("Single numeric reply should be false", () => {
+    let reply = 2;
+    quiz.setCurrentReply(reply);
+    const questionShadow = quiz.getCurrentQuestionShadow();
+    expect(quiz.isCorrect(question, questionShadow)).toBeFalsy();
+  });
+
+  test("Single string reply should be true", () => {
+    let reply = "a";
+    quiz.appendQuestion(questionString);
+    quiz.setCurrentReply(reply);
+    const questionShadow = quiz.getCurrentQuestionShadow();
+    expect(quiz.isCorrect(question, questionShadow)).toBeTruthy();
+  });
+
+  test("Single string reply should be false", () => {
+    let reply = "x";
+    quiz.setCurrentReply(reply);
+    const questionShadow = quiz.getCurrentQuestionShadow();
+    expect(quiz.isCorrect(question, questionShadow)).toBeFalsy();
+  });
 
 });
+
+
+describe("Tests for set multiples replies", () => {
+  const quiz = new Quiz();
+  const question = {
+    question: "This is a test question",
+    type: "number",
+    answer: [1, 2],
+    answers: [1, 2, 3, 4]
+  }
+
+  test("Multiple replies should be correct", () => {
+    let reply = [1, 2];
+    quiz.appendQuestion(question);
+    quiz.setCurrentReply(reply);
+    const questionShadow = quiz.getCurrentQuestionShadow();
+    expect(quiz.isCorrect(question, questionShadow)).toEqual([true, true]);
+  });
+
+})
