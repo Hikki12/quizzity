@@ -83,6 +83,128 @@ describe("Testing quiz methods", () => {
   });
 });
 
+
+describe("Tests for numeric corrections", () => {
+  const quiz = new Quiz();
+
+  test("Reply should be correct", () => {
+    const answer = 2.2;
+    const reply = 2.2;
+    const isCorrect = quiz.isCorrectNumeric(answer, reply, undefined);
+    expect(isCorrect).toBeTruthy();
+  });
+
+  test("Reply should be false", () => {
+    const answer = 2.2;
+    const reply = 4;
+    const isCorrect = quiz.isCorrectNumeric(answer, reply, undefined);
+    expect(isCorrect).toBeFalsy();
+  });
+
+  test("Reply with some (+positive) error allowed should be correct", () => {
+    const answer = 100;
+    const reply = 105;
+    const error = .05; // 5%
+    const isCorrect = quiz.isCorrectNumeric(answer, reply, error);
+    expect(isCorrect).toBeTruthy();
+  });
+
+  test("Reply with some (-negative) error allowed should be correct", () => {
+    const answer = 100;
+    const reply = 95;
+    const error = .05; // 5%
+    const isCorrect = quiz.isCorrectNumeric(answer, reply, error);
+    expect(isCorrect).toBeTruthy();
+  });
+
+  test("Reply exceeded the (+positive) error allowed, therefore should be incorrect.", () => {
+    const answer = 100;
+    const reply = 106;
+    const error = .05; // 5%
+    const isCorrect = quiz.isCorrectNumeric(answer, reply, error);
+    expect(isCorrect).toBeFalsy();
+  });
+
+  test("Reply exceeded the (+negative) error allowed, therefore should be incorrect.", () => {
+    const answer = 100;
+    const reply = 90;
+    const error = .05; // 5%
+    const isCorrect = quiz.isCorrectNumeric(answer, reply, error);
+    expect(isCorrect).toBeFalsy();
+  });
+
+  test("All replies should be correct", () => {
+    const answer = [1, 2, 3];
+    const reply = [1, 2, 3];
+    const isCorrect = quiz.isCorrectNumeric(answer, reply, undefined);
+    expect(isCorrect).toEqual([true, true, true]);
+  });
+
+  test("Second reply should be false", () => {
+    const answer = [1, 2, 3];
+    const reply = [1, 0, 3];
+    const isCorrect = quiz.isCorrectNumeric(answer, reply, undefined);
+    expect(isCorrect).toEqual([true, false, true]);
+  });
+
+  test("Third reply should be false", () => {
+    const answer = [100, 1000, 3];
+    const reply = [95, 1050, 10];
+    const error = .05; // 5%
+    const isCorrect = quiz.isCorrectNumeric(answer, reply, error);
+    expect(isCorrect).toEqual([true, true, false]);
+  });
+})
+
+
+describe("Tests for string corrections", () => {
+  const quiz = new Quiz();
+
+  test("Reply should be correct", () => {
+    const answer = "yellow";
+    const reply = "yellow";
+    const isCorrect = quiz.isCorrectString(answer, reply);
+    expect(isCorrect).toBeTruthy();
+  });
+
+  test("Reply with with white spaces, should be correct", () => {
+    const answer = "yellow";
+    const reply = "YeLloW     ";
+    const isCorrect = quiz.isCorrectString(answer, reply);
+    expect(isCorrect).toBeTruthy();
+  });
+
+  test("Reply should be false", () => {
+    const answer = "yellow";
+    const reply = "yell0w     ";
+    const isCorrect = quiz.isCorrectString(answer, reply);
+    expect(isCorrect).toBeFalsy();
+  });
+
+  test("All replies should be correct", () => {
+    const answer = ["blue", "yellow", "orange"];
+    const reply = ["blue", "yellow", "orange"];
+    const isCorrect = quiz.isCorrectString(answer, reply);
+    expect(isCorrect).toEqual([true, true, true])
+  });
+
+  test("All replies with white spaces should be correct", () => {
+    const answer = ["blue", "yellow", "orange"];
+    const reply = ["Blue", "yellOw   ", "    Orange   "];
+    const isCorrect = quiz.isCorrectString(answer, reply);
+    expect(isCorrect).toEqual([true, true, true])
+  });
+
+  test("Second reply should be false", () => {
+    const answer = ["blue", "yellow", "orange"];
+    const reply = ["Blue", "green   ", "    Orange   "];
+    const isCorrect = quiz.isCorrectString(answer, reply);
+    expect(isCorrect).toEqual([true, false, true])
+  });
+
+})
+
+
 describe("Tests for set a single reply", () => {
   const quiz = new Quiz();
   const question = {
@@ -119,7 +241,7 @@ describe("Tests for set a single reply", () => {
     quiz.appendQuestion(questionString);
     quiz.setCurrentReply(reply);
     const questionShadow = quiz.getCurrentQuestionShadow();
-    expect(quiz.isCorrect(question, questionShadow)).toBeTruthy();
+    expect(quiz.isCorrect(questionString, questionShadow)).toBeTruthy();
   });
 
   test("Single string reply should be false", () => {
@@ -134,14 +256,14 @@ describe("Tests for set a single reply", () => {
 
 describe("Tests for set multiples replies", () => {
   const quiz = new Quiz();
-  const question = {
-    question: "This is a test question",
-    type: "number",
-    answer: [1, 2],
-    answers: [1, 2, 3, 4]
-  }
 
   test("Multiple replies should be correct", () => {
+    const question = {
+      question: "This is a test question",
+      type: "number",
+      answer: [1, 2],
+      answers: [1, 2, 3, 4]
+    }
     let reply = [1, 2];
     quiz.appendQuestion(question);
     quiz.setCurrentReply(reply);

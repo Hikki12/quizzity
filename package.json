@@ -20,9 +20,9 @@
     "format": "prettier --write src",
     "format:check": "prettier --check src/**/*.ts",
     "lint": "eslint ./src",
-    "lint": "eslint ./src --fix"
+    "lint:fix": "eslint ./src --fix"
   },
-  "keywords": [],
+  "keywords": ["quiz", "questions", "e-learning"],
   "author": "Jason Francisco Macas Mora",
   "license": "MIT",
   "devDependencies": {
